@@ -1,0 +1,24 @@
+runmode: debug            # 开发模式, debug, release, test
+addr: :7070               # HTTP绑定端口
+name: link-gin-db         # Server的名字
+
+mysql:
+  addr: 172.16.7.17:3306
+  db: db_docker_link
+  user: root
+  password: 123456
+  maxIdleConns: 10
+  maxOpenConns: 100
+
+redis:
+  host: 172.16.7.16
+  port: 6379
+  cluster_host: 192.168.1.199:7000,192.168.1.199:7001,192.168.1.199:7002
+  is_cluster: 0
+  maxIdle: 100
+  maxActive: 200
+  idleTimeout: 120 #s
+
+token:
+  secret: klgj83rh
+  secretTime: 86400
