@@ -1,7 +1,7 @@
 package redis
 
 import (
-	"link-gin-db/config"
+	"github.com/liangjfblue/docker-all/link-gin-db/config"
 
 	"github.com/gomodule/redigo/redis"
 )

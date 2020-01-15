@@ -1,11 +1,12 @@
 package router
 
 import (
-	"link-gin-db/config"
-	"link-gin-db/internal/controllers"
-	"link-gin-db/internal/db/redis"
-	"link-gin-db/internal/router/mid"
 	"net/http"
+
+	"github.com/liangjfblue/docker-all/link-gin-db/config"
+	"github.com/liangjfblue/docker-all/link-gin-db/internal/controllers"
+	"github.com/liangjfblue/docker-all/link-gin-db/internal/db/redis"
+	"github.com/liangjfblue/docker-all/link-gin-db/internal/router/mid"
 
 	"github.com/gin-gonic/gin"
 )
