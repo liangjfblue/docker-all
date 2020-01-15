@@ -1,10 +1,10 @@
 package user
 
 import (
-	"fmt"
 	"link-gin-db/internal/controllers/base"
 	"link-gin-db/internal/models"
-	"link-gin-db/pkg/errno"
+	"link-gin-db/internal/pkg/errno"
+	"log"
 	"strconv"
 
 	"github.com/jinzhu/gorm"
@@ -23,7 +23,7 @@ func (u *User) Get(c *gin.Context) {
 
 	user, err := models.GetUser(&models.TBUser{Model: gorm.Model{ID: uint(uid)}})
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		result.Failure(c, errno.ErrUserNotFound)
 		return
 	}

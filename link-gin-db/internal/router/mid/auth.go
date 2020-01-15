@@ -2,8 +2,8 @@ package mid
 
 import (
 	"link-gin-db/internal/controllers/base"
-	"link-gin-db/pkg/errno"
-	"link-gin-db/pkg/token"
+	"link-gin-db/internal/pkg/errno"
+	"link-gin-db/internal/pkg/token"
 
 	"github.com/gin-gonic/gin"
 )

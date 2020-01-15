@@ -1,8 +1,7 @@
 package models
 
 import (
-	"fmt"
-	"link-gin-db/pkg/auth"
+	"link-gin-db/internal/pkg/auth"
 	"sync"
 	"time"
 
@@ -38,6 +37,11 @@ func GetUser(u *TBUser) (*TBUser, error) {
 	return &user, err
 }
 
+func CountUser() (int64, error) {
+	var count int64
+	err := DB.Model(&TBUser{}).Count(&count).Error
+	return count, err
+}
 func ListUsers(username string, offset, limit int32) ([]*TBUser, uint64, error) {
 	var (
 		err   error
@@ -63,7 +67,6 @@ func (t *TBUser) Update() error {
 
 func (t *TBUser) Encrypt() (err error) {
 	t.Password, err = auth.Encrypt(t.Password)
-	fmt.Println(len(t.Password))
 	return
 }
 

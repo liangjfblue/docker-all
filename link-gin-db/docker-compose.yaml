@@ -1,49 +1,37 @@
 version: '3'
 
 services:
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+    restart: on-failure
+    command: redis-server --appendonly yes --bind 0.0.0.0
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - "./db/mysql_data:/var/lib/mysql"
+      - "./db/mysql_init:/docker-entrypoint-initdb.d/"
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_docker_link
+      MYSQL_USER: liangjf
+      MYSQL_PASSWORD: 123456
+    ports:
+      - "3306:3306"
 
   web:
     build:
       context: .
       dockerfile: Dockerfile
-    labels:
-      com.example.description: "docker link web"
-      com.example.department: "laingjf"
     ports:
       - "7070:7070"
-    deploy:
-      replicas: 2
-      update_config:
-        parallelism: 2
-        delay: 10s
-      restart_policy:
-        condition: on-failure #no  always  on-failure  unless-stopped
+    restart: on-failure #no  always  on-failure  unless-stopped
+    links:
+      - mysql:mysql-server
+      - redis:redis-server
     depends_on:
-      - redis
       - mysql
-    environment:
-      REDIS_URL: redis:6379
-    networks:
-      - backend
-
-  redis:
-    image: "redis:alpine"
-    networks:
-      - backend
-    restart: on-failure
-
-  mysql:
-    image: mysql:5.7
-    volumes:
-      - "./db:/var/lib/mysql"
-    restart: on-failure
-    environment:
-      MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_DATABASE: db_docker_link
-      MYSQL_USER: root
-      MYSQL_PASSWORD: 123456
-    networks:
-      - backend
-
-networks:
-  backend:
+      - redis

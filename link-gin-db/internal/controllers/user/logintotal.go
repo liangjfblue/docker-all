@@ -1,27 +1,40 @@
 package user
 
 import (
-	"fmt"
 	"link-gin-db/internal/controllers/base"
 	"link-gin-db/internal/db/redis"
-	"link-gin-db/pkg/errno"
-
-	redis2 "github.com/gomodule/redigo/redis"
+	"link-gin-db/internal/models"
+	"link-gin-db/internal/pkg/errno"
+	"log"
 
 	"github.com/gin-gonic/gin"
+	redis2 "github.com/gomodule/redigo/redis"
 )
 
 func (u *User) LoginTotal(c *gin.Context) {
 	var (
 		err    error
+		count  int64
 		result base.Result
 	)
 
-	reply, err := redis2.Int(u.Cache.Do("GET", redis.CreateUserTotalKey))
+	reply, err := redis2.Int64(u.Cache.GET(redis.CreateUserTotalKey))
 	if err != nil {
-		fmt.Println(err.Error())
-		result.Failure(c, errno.ErrDatabase)
-		return
+		log.Println(err)
+
+		count, err = models.CountUser()
+		if err != nil {
+			log.Println(err)
+			result.Failure(c, errno.ErrDatabase)
+			return
+		}
+
+		if _, err = u.Cache.IncrBy(redis.CreateUserTotalKey, count); err != nil {
+			log.Println(err)
+			result.Failure(c, errno.ErrCache)
+			return
+		}
+		reply = count
 	}
 
 	resp := LoginTotalResponse{
@@ -29,5 +42,4 @@ func (u *User) LoginTotal(c *gin.Context) {
 	}
 
 	result.Success(c, resp)
-
 }
