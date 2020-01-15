@@ -11,6 +11,5 @@ before_install:
   chmod +x ./link-gin-db/build.sh
 
 script:
-  - go mod tidy
-  - go test -v ./...
+  - ./gin-docker/gin-docker/build.sh
   - ./link-gin-db/build.sh
