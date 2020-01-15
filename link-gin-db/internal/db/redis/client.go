@@ -2,6 +2,8 @@ package redis
 
 import (
 	"link-gin-db/config"
+
+	"github.com/gomodule/redigo/redis"
 )
 
 type Client struct {
@@ -18,14 +20,14 @@ func NewClient(conf *config.RedisConfig) *Client {
 	}
 }
 
-func (c Client) Do(cmd, key string, arg ...interface{}) (interface{}, error) {
-	if arg != nil {
-		return c.pool.RedisPool.Get().Do(cmd, key, arg)
-	} else {
-		return c.pool.RedisPool.Get().Do(cmd, key)
-	}
+func (c Client) GET(key string) (interface{}, error) {
+	return c.pool.RedisPool.Get().Do("GET", key)
 }
 
-func (c Client) Expire(key string, arg ...interface{}) (interface{}, error) {
-	return c.pool.RedisPool.Get().Do("EXPIRE", key, arg)
+func (c Client) Incr(key string) (int64, error) {
+	return redis.Int64(c.pool.RedisPool.Get().Do("INCR", key))
+}
+
+func (c Client) IncrBy(key string, increment int64) (int64, error) {
+	return redis.Int64(c.pool.RedisPool.Get().Do("INCRBY", key, increment))
 }

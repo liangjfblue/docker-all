@@ -1,7 +1,7 @@
 package base
 
 import (
-	"link-gin-db/pkg/errno"
+	"link-gin-db/internal/pkg/errno"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

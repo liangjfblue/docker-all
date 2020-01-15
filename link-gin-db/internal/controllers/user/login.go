@@ -1,12 +1,12 @@
 package user
 
 import (
-	"fmt"
 	"link-gin-db/internal/controllers/base"
 	"link-gin-db/internal/models"
-	"link-gin-db/pkg/auth"
-	"link-gin-db/pkg/errno"
-	"link-gin-db/pkg/token"
+	"link-gin-db/internal/pkg/auth"
+	"link-gin-db/internal/pkg/errno"
+	"link-gin-db/internal/pkg/token"
+	"log"
 
 	"github.com/gin-gonic/gin"
 )
@@ -19,35 +19,35 @@ func (u *User) Login(c *gin.Context) {
 	)
 
 	if err = c.BindJSON(&req); err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		result.Failure(c, errno.ErrBind)
 		return
 	}
 
 	user, err := models.GetUser(&models.TBUser{Username: req.Username})
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		result.Failure(c, errno.ErrUserNotFound)
 		return
 	}
 
 	hashPassword, err := auth.Encrypt(req.Password)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		result.Failure(c, errno.ErrEncrypt)
 		return
 
 	}
 
 	if err = auth.Compare(hashPassword, user.Password); err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		result.Failure(c, errno.ErrCompare)
 		return
 	}
 
 	tokenStr, err := token.SignToken(token.Context{UID: user.ID})
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		result.Failure(c, errno.ErrSignToken)
 		return
 	}

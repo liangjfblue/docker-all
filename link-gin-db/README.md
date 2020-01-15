@@ -236,3 +236,7 @@ docker-compose文件是一个定义服务、 网络和卷的 YAML 文件 。Comp
             "total": 1
         }
     }
+    
+进去redis容器：
+
+sudo docker exec -it ${container} redis-cli -h 127.0.0.1 -p 6379 -a ${pwd}

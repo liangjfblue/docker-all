@@ -8,8 +8,9 @@ import (
 )
 
 type IClient interface {
-	Do(cmd, key string, arg ...interface{}) (interface{}, error)
-	Expire(key string, arg ...interface{}) (interface{}, error)
+	GET(key string) (interface{}, error)
+	Incr(key string) (int64, error)
+	IncrBy(key string, increment int64) (int64, error)
 }
 
 type Pool struct {

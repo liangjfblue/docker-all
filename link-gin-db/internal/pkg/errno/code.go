@@ -40,6 +40,7 @@ var (
 	ErrCompare    = &Errno{Code: New(1007), Msg: "Compare password error"}
 	ErrSignToken  = &Errno{Code: New(1008), Msg: "sign token error"}
 	ErrCheckToken = &Errno{Code: New(1009), Msg: "check token error"}
+	ErrCache      = &Errno{Code: New(1010), Msg: "cache  error"}
 
 	ErrUserNotLogin = &Errno{Code: New(1020), Msg: "user not login error"}
 	ErrUserNotFound = &Errno{Code: New(1021), Msg: "user not find error"}
