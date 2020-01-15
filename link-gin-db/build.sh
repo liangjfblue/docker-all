@@ -1,5 +1,5 @@
 #!/bin/sh
 
-cd cmd
+cd ./link-gin-db/cmd
 go mod tidy
 go build
