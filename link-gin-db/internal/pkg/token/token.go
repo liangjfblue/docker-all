@@ -2,8 +2,9 @@ package token
 
 import (
 	"errors"
-	"link-gin-db/config"
 	"time"
+
+	"github.com/liangjfblue/docker-all/link-gin-db/config"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"

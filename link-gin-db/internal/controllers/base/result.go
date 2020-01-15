@@ -1,8 +1,9 @@
 package base
 
 import (
-	"link-gin-db/internal/pkg/errno"
 	"net/http"
+
+	"github.com/liangjfblue/docker-all/link-gin-db/internal/pkg/errno"
 
 	"github.com/gin-gonic/gin"
 )

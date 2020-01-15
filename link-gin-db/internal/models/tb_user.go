@@ -1,9 +1,10 @@
 package models
 
 import (
-	"link-gin-db/internal/pkg/auth"
 	"sync"
 	"time"
+
+	"github.com/liangjfblue/docker-all/link-gin-db/internal/pkg/auth"
 
 	"github.com/jinzhu/gorm"
 

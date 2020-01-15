@@ -1,10 +1,10 @@
 package main
 
 import (
-	"link-gin-db/config"
-	"link-gin-db/internal/db/redis"
-	"link-gin-db/internal/router"
-	"link-gin-db/internal/server"
+	"github.com/liangjfblue/docker-all/link-gin-db/config"
+	"github.com/liangjfblue/docker-all/link-gin-db/internal/db/redis"
+	"github.com/liangjfblue/docker-all/link-gin-db/internal/router"
+	"github.com/liangjfblue/docker-all/link-gin-db/internal/server"
 )
 
 func main() {

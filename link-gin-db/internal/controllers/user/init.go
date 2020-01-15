@@ -1,8 +1,8 @@
 package user
 
 import (
-	"link-gin-db/config"
-	"link-gin-db/internal/db/redis"
+	"github.com/liangjfblue/docker-all/link-gin-db/config"
+	"github.com/liangjfblue/docker-all/link-gin-db/internal/db/redis"
 )
 
 type User struct {

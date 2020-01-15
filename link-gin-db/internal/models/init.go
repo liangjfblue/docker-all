@@ -2,8 +2,9 @@ package models
 
 import (
 	"fmt"
-	"link-gin-db/config"
 	"sync"
+
+	"github.com/liangjfblue/docker-all/link-gin-db/config"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"

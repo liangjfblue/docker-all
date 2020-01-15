@@ -1,11 +1,12 @@
 package user
 
 import (
-	"link-gin-db/internal/controllers/base"
-	"link-gin-db/internal/models"
-	"link-gin-db/internal/pkg/errno"
 	"log"
 	"strconv"
+
+	"github.com/liangjfblue/docker-all/link-gin-db/internal/controllers/base"
+	"github.com/liangjfblue/docker-all/link-gin-db/internal/models"
+	"github.com/liangjfblue/docker-all/link-gin-db/internal/pkg/errno"
 
 	"github.com/jinzhu/gorm"
 

@@ -1,4 +1,4 @@
-module link-gin-db
+module github.com/liangjfblue/docker-all/link-gin-db
 
 go 1.13
 

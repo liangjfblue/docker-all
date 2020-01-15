@@ -1,11 +1,12 @@
 package server
 
 import (
-	"link-gin-db/internal/models"
 	"log"
 	"net/http"
 
-	"link-gin-db/config"
+	"github.com/liangjfblue/docker-all/link-gin-db/internal/models"
+
+	"github.com/liangjfblue/docker-all/link-gin-db/config"
 
 	"github.com/gin-gonic/gin"
 )
