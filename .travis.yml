@@ -8,8 +8,9 @@ env:
   - GO111MODULE=on
 
 before_install:
+  chmod +x ./link-gin-db/build.sh
 
 script:
   - go mod tidy
   - go test -v ./...
-  - go build
+  - ./link-gin-db/build.sh
